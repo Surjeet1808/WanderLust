@@ -3,40 +3,58 @@
     <div class="col-8 offset-2">
         <br>
     <h3>Create New Listing</h3>
-    <form method = "Post" action="/listings" >
+    <form method = "Post" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
            <label for="title" class="form-label">Enter a title</label>
            <input class="form-control" name = "listing[title]" placeholder="Add a catchy title" type = "text" id="title" required>
+           <div class="invalid-feedback">
+            Title should be valide
+          </div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control" name="listing[description]" placeholder="type here" type="text" id="description" required></textarea>
+            <div class="invalid-feedback">
+                Description should be valide
+              </div>
         </div>
         <div class="mb-3">
-            <label for="url" class="form-label">Image</label>
-            <input class="form-control" name = "listing[image URL]" placeholder="Enter image url link" type = "text" id="url" required >
+            <label for="image" class="form-label">Upload Listing Image</label>
+            <input class="form-control" name = "listing[image]" placeholder="Enter image url link" type = "file" id="image" required >
+            <div class="invalid-feedback">
+                url should be valide
+              </div>
         </div>
         
         <div class="row">
             <div class="mb-3 col-md-4">
                 <label for="price" class="form-label">Price</label>
                 <input class="form-control" name = "listing[price]" placeholder="1200" id="price" required>
-                </div>
+                <div class="invalid-feedback">
+                    Price should be valide
+                  </div>
+            </div>
                 <div class="mb-3 col-md-8">
-                    <label for="contry" class="form-label">Contry</label>
+                    <label for="country" class="form-label">Country</label>
                     <input name = "listing[country]"
                     placeholder="India"
                     type = "text"
-                    id="contry" 
+                    id="country" 
                     class="form-control"
                     required>
-                    
+                    <div class="invalid-feedback">
+                        Country should be valide
+                      </div>
                     </div>
         </div>
         <div class="mb-3">
         <label for="location" class="form-label">Location</label>
         <input class="form-control" name = "listing[location]" placeholder="Bhopal,Gwalior" type = "text" id="location" required>
+        <div class="invalid-feedback">
+            Location should be valide
         </div>
+    </div>
+    <br>
         <button class="add-btn btn btn-dark">add</button>
         <br>
     </form>

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema=mongoose.Schema;
 const Review=require("./reviews.js");
+const User=require("./user.js");
 
 const listingSchema = new Schema({
     title: {
@@ -9,9 +10,9 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-        filename: String,
         url: String,
-    },
+        filename: String,
+          },
     price: Number,
     location: String,
     country: String,
@@ -20,7 +21,11 @@ const listingSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: Review
         }
-    ]
+    ],
+    owner:{
+        type:  Schema.Types.ObjectId,
+        ref: User
+    }
 })
 
 const Listing = mongoose.model("Listing",listingSchema);
