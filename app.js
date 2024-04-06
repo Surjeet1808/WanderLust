@@ -10,6 +10,7 @@ const methodOverride = require("method-override");
 const Expresserror = require("./utils/Expresserror.js");
 const ejsMate=require("ejs-mate");
 const session=require("express-session");
+const MongoStore = require('connect-mongo');
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
@@ -22,7 +23,8 @@ const userRouter=require("./routes/user.js");
 const multer  = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
-let url='mongodb://127.0.0.1:27017/wanderlust';
+//let url='mongodb://127.0.0.1:27017/wanderlust';
+let url=process.env.ATLASDB_URL;
 main()
 .then(()=>{
     console.log("DB is connected");
@@ -34,8 +36,20 @@ main()
 async function main(){
     mongoose.connect(url);
 }
+
+const store=MongoStore.create({
+    mongoUrl:url,
+    crypto: {
+        secret: process.env.SECRET
+    },
+    touchAfter: 24*60*60,
+})
+store.on("error",()=>{
+  console.log("error occured in mongo session store",err);
+});
 const sessionOptions = {
-    secret: 'mysecret',
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie:{
