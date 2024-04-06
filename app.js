@@ -36,16 +36,14 @@ main()
 async function main(){
     mongoose.connect(url);
 }
-const client = new MongoClient('your-mongodb-url', { useNewUrlParser: true, useUnifiedTopology: true });
 const store=MongoStore.create({
     mongoUrl:url,
     crypto: {
         secret: process.env.SECRET
     },
-    client:client,
     touchAfter: 24*60*60,
 })
-store.on("error",()=>{
+store.on("error",(err)=>{
   console.log("error occured in mongo session store",err);
 });
 const sessionOptions = {
