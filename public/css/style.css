@@ -103,7 +103,7 @@ body{
 }
 .filter{
     text-align: center;
-    margin-left: 2rem;
+    margin: 0 1rem;
 }
 
 .filter p{
@@ -129,7 +129,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-     margin-left: 2.5rem;
+     /* margin-left: 2.5rem; */
     font-size: 1.1rem; 
 }
 
